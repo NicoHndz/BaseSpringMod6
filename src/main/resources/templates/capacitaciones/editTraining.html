@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>EDITAR USUARIO</title>
+<link
+	href="http://cdn.jsdelivr.net/webjars/bootstrap/3.3.4/css/bootstrap.min.css"
+	th:href="@{/webjars/bootstrap/3.3.4/css/bootstrap.min.css}"
+	rel="stylesheet" media="screen" />
+<link rel="stylesheet" type="text/css" th:href="@{/css/main.css}">
+<script src="http://cdn.jsdelivr.net/webjars/jquery/2.1.4/jquery.min.js"
+	th:src="@{/webjars/jquery/2.1.4/jquery.min.js}"></script>
+</head>
+<body>
+	<div th:insert="fragments/navBar :: navbar"></div>
+	<br>
+	<div class="container">
+		<div class="row">
+			<div
+				class="col-lg-6 col-md-6 col-sm-6 container justify-content-center card">
+				<h1 class="text-center">Editar capacitacion</h1>
+				<div class="card-body">
+					<form th:action="@{/trainings/{id}(id=${capacitacion.id})}"
+						th:object="${capacitacion}" method="POST">
+						<div class="form-group">
+							<label>Run Cliente:</label> <input type="text" name="nombre"
+								th:field="*{runCliente}" class="form-control"
+								placeholder="ingrese nombre" required />
+						</div>
+						<br>
+						<div class="form-group">
+							<label>Fecha:</label> <input type="date" name="fecha"
+								th:field="*{fecha}" class="form-control" required />
+						</div>
+						<br>
+						<div class="form-group">
+							<label>Hora:</label> <input type="time" name="hora"
+								th:field="*{hora}" class="form-control" required />
+						</div>
+						<br>
+						<div class="form-group">
+							<label>Lugar:</label> <input type="text" name="lugar"
+								th:field="*{lugar}" class="form-control" required />
+						</div>
+						<br>
+						<div class="form-group">
+							<label>Duracion:</label> <input type="text" name="duracion"
+								th:field="*{duracion}" class="form-control" required />
+						</div>
+						<br>
+						<div class="form-group">
+							<label>Asistentes:</label> <input type="number"
+								name="Cantidad Asistentes" th:field="*{cantidadAsistentes}"
+								class="form-control" required />
+						</div>
+						<br>
+						<div class="box-footer">
+							<button class="btn btn-success">Modificar</button>
+						</div>
+					</form>
+					<br>
+					<div>
+						<a href="/trainings/list"><button class="btn btn-primary">Volver</button></a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

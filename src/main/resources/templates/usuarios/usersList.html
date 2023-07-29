@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head lang="en">
+<meta http-equiv="Content-Type" content="text/html" charset="UTF-8" />
+<title>LISTA USUARIOS</title>
+<link
+	href="http://cdn.jsdelivr.net/webjars/bootstrap/3.3.4/css/bootstrap.min.css"
+	th:href="@{/webjars/bootstrap/3.3.4/css/bootstrap.min.css}"
+	rel="stylesheet" media="screen" />
+<link rel="stylesheet" type="text/css" th:href="@{/css/main.css}">
+<script src="http://cdn.jsdelivr.net/webjars/jquery/2.1.4/jquery.min.js"
+	th:src="@{/webjars/jquery/2.1.4/jquery.min.js}"></script>
+</head>
+<body>
+	<div th:insert="fragments/navBar :: navbar"></div>
+	<div class="container">
+		<h1>LISTA DE USUARIOS</h1>
+		<div class="container">
+			<div th:if="${not #lists.isEmpty(usuarios)}">
+				<h2>Users List</h2>
+				<table class="table table-striped">
+					<tr>
+						<th>ID</th>
+						<th>Nombre</th>
+						<th>RUN</th>
+						<th>Nacimiento</th>
+						<th>Actions</th>
+					</tr>
+					<tr th:each="usuario: ${usuarios}">
+						<td th:text="${usuario.id}">ID</td>
+						<td th:text="${usuario.nombreUsuario}">Nombre</td>
+						<td th:text="${usuario.run}">RUN</td>
+						<td
+							th:text="${#dates.format(usuario.fechaNacimiento, 'dd-MM-yyyy')}">Fecha</td>
+						<td><a th:href="@{/users/edit/{id}(id=${usuario.id})}"
+							class="btn btn-primary">edit</a> <a
+							th:href="@{/users/delete/{id}(id=${usuario.id})}"
+							class="btn btn-danger">delete</a></td>
+					</tr>
+
+				</table>
+			</div>
+			<br>
+			<div th:if="${#lists.isEmpty(usuarios)}">
+				<h3>Lista vacia</h3>
+			</div>
+			<br>
+			<div>
+				<a href="/users"><button class="btn btn-primary">Volver</button></a>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

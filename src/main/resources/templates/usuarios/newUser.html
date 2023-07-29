@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>NUEVO USUARIOS</title>
+<link
+	href="http://cdn.jsdelivr.net/webjars/bootstrap/3.3.4/css/bootstrap.min.css"
+	th:href="@{/webjars/bootstrap/3.3.4/css/bootstrap.min.css}"
+	rel="stylesheet" media="screen" />
+<link rel="stylesheet" type="text/css" th:href="@{/css/main.css}">
+<script src="http://cdn.jsdelivr.net/webjars/jquery/2.1.4/jquery.min.js"
+	th:src="@{/webjars/jquery/2.1.4/jquery.min.js}"></script>
+</head>
+<body>
+	<div th:insert="fragments/navBar :: navbar"></div>
+	<br>
+	<div class="container">
+		<div class="row">
+			<div
+				class="col-lg-6 col-md-6 col-sm-6 container justify-content-center card">
+				<h1 class="text-center">Nuevo Usuario</h1>
+				<br>
+				<div class="card-body">
+					<form th:action="@{/users}" th:object="${usuario}" method="POST">
+						<div class="form-group">
+							<label>Nombre:</label> <input type="text" name="nombre"
+								th:field="*{nombreUsuario}" class="form-control"
+								placeholder="ingrese nombre" required />
+						</div>
+						<br>
+						<div class="form-group">
+							<label>RUN:</label> <input type="text" name="run"
+								th:field="*{run}" class="form-control" required />
+						</div>
+						<br>
+						<div class="form-group">
+							<label>Fecha de nacimiento:</label> <input type="date"
+								name="fecha nacimiento" th:field="*{fechaNacimiento}"
+								class="form-control" required />
+						</div>
+						<br>
+						<div class="box-footer">
+							<button class="btn btn-success">Agregar</button>
+						</div>
+					</form>
+					<br>
+					<div>
+						<a href="/users"><button class="btn btn-primary">Volver</button></a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>EDITAR USUARIO</title>
+<link
+	href="http://cdn.jsdelivr.net/webjars/bootstrap/3.3.4/css/bootstrap.min.css"
+	th:href="@{/webjars/bootstrap/3.3.4/css/bootstrap.min.css}"
+	rel="stylesheet" media="screen" />
+<link rel="stylesheet" type="text/css" th:href="@{/css/main.css}">
+<script src="http://cdn.jsdelivr.net/webjars/jquery/2.1.4/jquery.min.js"
+	th:src="@{/webjars/jquery/2.1.4/jquery.min.js}"></script>
+</head>
+<body>
+	<div th:insert="fragments/navBar :: navbar"></div>
+	<br>
+	<div class="container">
+		<div class="row">
+			<div
+				class="col-lg-6 col-md-6 col-sm-6 container justify-content-center card">
+				<h1 class="text-center">Editar mensaje</h1>
+				<div class="card-body">
+					<form th:action="@{/contact/{id}(id=${contacto.id})}"
+						th:object="${contacto}" method="POST">
+						<div class="form-group">
+							<label>Nombre:</label> <input type="text" name="nombre"
+								th:field="*{userName}" class="form-control"
+								placeholder="Ingrese nombre" required />
+						</div>
+						<br>
+						<div class="form-group">
+							<label>Mensaje:</label>
+							<textarea rows="4" cols="50" name="mensaje" th:field="*{message}"
+								placeholder="ingrese mensaje" required></textarea>
+						</div>
+						<br>
+						<div class="box-footer">
+							<button class="btn btn-success">Modificar</button>
+						</div>
+					</form>
+					<br>
+					<div>
+						<a href="/contact/list"><button class="btn btn-primary">Volver</button></a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

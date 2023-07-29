@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head lang="en">
+<meta http-equiv="Content-Type" content="text/html" charset="UTF-8" />
+<title>LISTA CAPACITACIONES</title>
+<link
+	href="http://cdn.jsdelivr.net/webjars/bootstrap/3.3.4/css/bootstrap.min.css"
+	th:href="@{/webjars/bootstrap/3.3.4/css/bootstrap.min.css}"
+	rel="stylesheet" media="screen" />
+<link rel="stylesheet" type="text/css" th:href="@{/css/main.css}">
+<script src="http://cdn.jsdelivr.net/webjars/jquery/2.1.4/jquery.min.js"
+	th:src="@{/webjars/jquery/2.1.4/jquery.min.js}"></script>
+</head>
+<body>
+	<div th:insert="fragments/navBar :: navbar"></div>
+	<div class="container">
+		<h1>LISTA DE CAPACITACIONES</h1>
+		<div class="container">
+			<div th:if="${not #lists.isEmpty(capacitaciones)}">
+				<table class="table table-striped">
+					<tr>
+						<th>ID</th>
+						<th>RUN Cliente</th>
+						<th>Fecha</th>
+						<th>Hora</th>
+						<th>Lugar</th>
+						<th>Duracion</th>
+						<th>Asistentes</th>
+						<th>Actions</th>
+					</tr>
+					<tr th:each="capacitacion: ${capacitaciones}">
+						<td th:text="${capacitacion.id}">ID</td>
+						<td th:text="${capacitacion.runCliente}">Run Cliente</td>
+						<td th:text="${#dates.format(capacitacion.fecha, 'dd-MM-yyyy')}">Fecha</td>
+						<td th:text="${capacitacion.hora}">hora</td>
+						<td th:text="${capacitacion.lugar}">lugar</td>
+						<td th:text="${capacitacion.duracion}">duracion</td>
+						<td th:text="${capacitacion.cantidadAsistentes}">Cantidad
+							Asistentes</td>
+						<td><a
+							th:href="@{/trainings/edit/{id}(id=${capacitacion.id})}"
+							class="btn btn-primary">edit</a> <a
+							th:href="@{/trainings/delete/{id}(id=${capacitacion.id})}"
+							class="btn btn-danger">delete</a></td>
+					</tr>
+
+				</table>
+			</div>
+			<br>
+			<div th:if="${#lists.isEmpty(capacitaciones)}">
+				<h3>Lista vacia</h3>
+			</div>
+			<br>
+			<div>
+
+				<a href="/trainings"><button class="btn btn-primary">Volver</button></a>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
